@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<link rel="stylesheet" href="/css/orderSP.css"/>
+
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+<!--Container-->
+<div class="container-fluid" style="margin-bottom:10rem; margin-top:5rem;">
+
+    <div class="row ro1">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="jumbotron jumbotron-fluid j1">
+                <div class="container-fluid">
+                <h4 class="display-4 text-center" style="font-size:40px;">Thank you for the order
+                    <span th:text="${user != null} ? ${#strings.capitalize(user.firstName)}"></span>!<br/></h4>
+                <div class="display-4 text-center" style="font-size:28px;"><i class="fas fa-check gr"
+                                                                              aria-hidden="true"></i> Your purchase has
+                    been made. We hope you enjoyed our services!
+                </div>
+                <!--                <div class="display-4 text-center" style="font-size:22px;">We hope you enjoyed our services!</div>-->
+                <p class="lead text-center"><strong>Please check your email</strong> for confirmation and further
+                    details on your order.</p>
+                <hr>
+
+                <div class="card" style="background-color:#EEEEF2;">
+                    <div class="card-header text-center bg-dark" style="padding:1rem;color:rgba(244, 98, 58, 0.9);"><h4
+                            style="font-family: 'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif;">
+                        <strong>List of items paid for:</strong></h4></div>
+                    <div class="card-body">
+                        <div class="row"
+                             style="font-family: 'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif;">
+                            <div class="col-md-8"><h5><strong>Products</strong></h5></div>
+                            <div class="col-md-2"><h5><strong>Price</strong></h5></div>
+                            <div class="col-md-2"><h5><strong>Quantity</strong></h5></div>
+                        </div>
+                        <hr/>
+
+                        <div class="row" th:each="cartItem : ${cartItemList}"
+                             style="font-family:'Palatino Linotype', 'Book Antiqua', Palatino, serif;">
+                            <!--                    <hr/>-->
+                            <div class="col-md-4">
+                                <!-- <a th:href="@{locationDetails?id}+${cartItem.location.id}">-->
+                                <p><img class="img-fluid" src="/images/tck.png"/> Tickets for
+                                    <span th:text="${cartItem.location.name}"></span></p>
+                                <p th:if="${cartItem.location.nrOfTickets==0}" class="col">Tickets Unavailable</p>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
+                                <h5 class="euro">€<span th:text="${cartItem.location.bookingPrice}"></span></h5>
+                            </div>
+                            <div class="col-md-2">
+                                <h5 th:text="${cartItem.qty}" class="lg"></h5>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <tr>
+                                        <td><b>Payer:</b> <span
+                                                th:text="${payer.firstName} + ' ' + ${payer.lastName}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Total:</b><span th:text="${transaction.amount.total} + ' Euro' "> </span>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn orange" th:href="@{/}">
+                                    Go Back Home <i class="fas fa-home"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div th:replace="common/header :: footer"/>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+
+</body>
+</html>

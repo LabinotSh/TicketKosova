@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merienda+One"/>
+<link rel="stylesheet" href="/css/lc.css"/>
+
+<body>
+<!-- Static navbar -->
+<div th:replace="common/header :: navbar"/>
+
+
+<div class="container-fluid bg">
+    <div class="row mt-5">
+        <div class="col text-center">
+            <div class="display-4 text-center text-white deta"><span>Attraction Details</span>
+            </div>
+            <hr class="hr"/>
+        </div>
+    </div>
+</div>
+
+<!--Container-->
+<div class="container-fluid mt-0 bg-light" style="width:100%; margin-bottom:60px; background:#f0f0f0;">
+    <div class="container-fluid  mt-4 gray-bg">
+        <div class="container container1">
+            <div class="row mt-0">
+                <form th:action="@{/shoppingCart/addItem}" method="post">
+                    <div class="row">
+                        <div class="col-md-2 text-left">
+                            <a class="a1" th:href="@{/destinationList}">
+                                <i class="fa fa-arrow-left"></i>LOCATIONS</a>
+                        </div>
+                        <div class="col-md-8  text-center d1">
+<!--                            <div class="bg-dark text-center py-1 ff">Booking & Ticket-->
+<!--                                Info-->
+<!--                            </div>-->
+                            <div class="card bg-light text-dark bd">
+                                <div class="card-header bg-dark ff text-center">
+                                    Booking & Ticket Info
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <input hidden="hidden" name="id" th:value="${location.id}"/>
+                                        <div class="col-md-5 mt-1 co1">
+                                            <label for="bookingDate"
+                                                   class="aa">Booking
+                                                Date:</label>
+                                            <input type="date" id="bookingDate" name="bookingDate"
+                                                   th:value="${ticket.bookingDate}"
+                                                   max="2022-12-31" class="n1"/>
+                                        </div>
+                                        <div class="col-md-4 mt-2 co2">
+                                            <i class="fas fa-ticket-alt ic"></i>
+                                            <span class="aa">Nr. of Tickets:</span>
+                                            <select name="qty">
+                                                <option th:each="qty : ${qtyList}" th:value="${qty}"
+                                                        th:text="${qty}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 text-left">
+                                            <button type="submit" class="btn mb-1 mr-4 py-3 bon text-white"> Book Now
+                                                <i class="fas fa-shopping-cart"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <input hidden="hidden" th:field="${location.id}"/>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-md-12 text-center">
+                                        <h6 class="locSuccess"><span
+                                                th:if="${addLocationSuccess}"><i
+                                                class="fas fa-check"></i>Ticket/s for the destination added to the cart
+                                            <a th:href="@{/shoppingCart/cart}"
+                                               style="margin-left:15px;color:rgba(244, 98, 58, 0.9);"> Go to the <i
+                                                    class="fas fa-shopping-cart b1"></i> </a> </span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row2 mb-5">
+                        <div class="col-md-5 text-center">
+                            <a class="aa" th:href="@{/images/location/}+${location.id}+'.jpg'" data-size="1600x1067">
+                                <img class="img-fluid destination-list"
+                                     th:src="@{/images/location/}+${location.id}+'.jpg'"/>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-6 mr-3">
+                            <div class="pala"><span class="display-4"
+                                                    th:text="${location.name}" style="font-size:20px;">, </span> -
+                                <span th:text="${location.address}" style="font-size:20px;">,</span></div>
+                            <!--                <h6>Municipality: <span th:text="${location.municipality}" style="font-size:17px; color:darkred;"></span></h6>-->
+                            <h6 class="pala">Ticket price:
+                                <span th:text="${#numbers.formatDecimal(location.bookingPrice,0,'COMMA',2,'POINT')}"
+                                      class="format"></span>
+                                <span class="euro">€</span></h6>
+                            <hr/>
+                            <p><span th:text="${location.description}" class="pala"></span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <hr class="hr1"/>
+
+                    <div class="row mt-1 mb-1">
+                        <div class="col-md-12 text-center display-4" style="font-size:26px; font-style:italic;">
+                            See more of <span th:text="${location.name}"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="text-center tt">
+                                See more beautiful shots of <span th:text="${location.name}"></span> and click on them
+                                for a better view.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <figure class="col-sm-3">
+                            <a th:href="@{/images/location/}+${4*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/location/}+${4*location.id}+'.jpg'"
+                                     class="img-fluid imagee"/>
+                            </a>
+                        </figure>
+
+                        <figure class="col-sm-3">
+                            <a th:href="@{/images/location/}+${5*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/location/}+${5*location.id}+'.jpg'"
+                                     class="img-fluid imagee"/>
+                            </a>
+                        </figure>
+
+                        <figure class="col-sm-3">
+                            <a th:href="@{/images/location/}+${2*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/location/}+${2*location.id}+'.jpg'"
+                                     class="img-fluid imagee"/>
+                            </a>
+                        </figure>
+                        <figure class="col-sm-3">
+                            <a th:href="@{/images/location/}+${3*location.id}+'.jpg'" data-size="1600x1067">
+                                <img alt="picture" th:src="@{/images/location/}+${3*location.id}+'.jpg'"
+                                     class="img-fluid imagee"/>
+                            </a>
+                        </figure>
+                    </div>
+
+                    <hr class="hr1"/>
+                </form>
+
+
+            </div>
+
+            <div class="row" style="margin-top:1rem;">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4 text-center bg-light pay1" style="padding:.5rem;">
+                    <div class="pay text-dark">Verified payment methods</div>
+                    <div>
+                        <img class="img-fluid" th:src="@{/images/paypal.png}"/>
+                        <img class="img-fluid" th:src="@{/images/master.png}"/>
+                        <img class="img-fluid" th:src="@{/images/visa.png}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:replace="common/header :: footer"/>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+<!--<script type="text/javascript" th:src="@{/js/scripts.js}"></script>-->
+<script type="text/javascript" src="/js/lc.js"></script>
+
+</body>
+</html>
