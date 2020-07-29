@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -67,7 +68,6 @@ public class CheckoutController {
 
    @Autowired
    private OrderService orderService;
-
 
     @RequestMapping(value = {"/checkout"})
     public String checkout(@RequestParam("id") Long cartId,
@@ -226,7 +226,7 @@ public class CheckoutController {
 
             com.paypal.api.payments.Payment payment1 = paypalService.executePayment(paymentId, payerId);
             payment.setHolderName(payerId);
-            payment.setId(paymentId);
+            //payment.setId(Long.parseLong(paymentId));
             @Deprecated
             com.paypal.api.payments.ShippingAddress shippingAddress11 = payment1.getPayer().getPayerInfo().getShippingAddress();
             shippingAddress.setShippingAddressStreet(shippingAddress11.getLine1());
