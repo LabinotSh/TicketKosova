@@ -15,7 +15,7 @@
 <div class="container-fluid c22">
     <div class="row text-center">
         <div class="col top text-center">
-            <h3 class="display-4 it">～Attraction List～</h3>
+            <h3 class="display-4 it" style="font-size:48px;">～Attraction List～</h3>
         </div>
     </div>
 </div>
@@ -73,7 +73,7 @@
                                                 </div>
                                                 <div class="col-md-7 ml-3">
                                                     <!--                        <div class="card-body">-->
-                                                    <div class="text-left">
+                                                    <div class="text-left title">
                                                         <a th:href="@{/locationDetails?id=}+${location.id}">
                                                             <h4 class="h4"
                                                                 th:text="${#strings.capitalize(location.name)}"></h4></a>

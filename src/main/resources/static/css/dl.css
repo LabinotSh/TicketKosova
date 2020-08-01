@@ -205,11 +205,25 @@ border-radius:1.5rem;
 
 @media (max-width: 768px) {
  .list-group{
-  width:70%;
+  width:100%;
  }
  .dd{
- margin-left:8rem;
+ margin-left:7rem;
+ margin-bottom:.6rem;
 }
+.title{
+margin-top:.5rem;}
+.c11{
+width:100%;
+text-align:center;
+}
+.aa{
+width:100%;}
+.top{
+font-size:22px;
+margin-left:-1rem;}
+.h3{
+text-align:center;}
 }
 
 
