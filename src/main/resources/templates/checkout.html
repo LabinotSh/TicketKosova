@@ -860,15 +860,15 @@
                                 <br/>
 
                                 <div class="row">
-                                    <div class="col-8"><h6>Products</h6></div>
-                                    <div class="col-2"><h6>Price</h6></div>
-                                    <div class="col-2"><h6>Quantity</h6></div>
+                                    <div class="col-md-8"><h6>Products</h6></div>
+                                    <div class="col-md-2"><h6>Price</h6></div>
+                                    <div class="col-md-2"><h6>Quantity</h6></div>
                                 </div>
 
                                 <hr/>
                                 <!--                                Display items in the cart-->
                                 <div class="row" th:each="cartItem : ${cartItemList}">
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <a th:href="@{/locationDetails(id=${cartItem.location.id})}">
                                             <!--Image thumbnail-->
                                             <img class="img-thumbnail location-details"
@@ -876,7 +876,7 @@
                                         </a>
 
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <a th:href="@{locationDetails?id}+${cartItem.location.id}"></a>
                                         <p class="mb-0">
                                             <img class="img-fluid" src="/images/tck.png"/><span th:text="${cartItem.qty}" class="sp1"></span> Ticket/s for
@@ -888,19 +888,19 @@
                                             Unavailable</p>
                                     </div>
 
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <h5 class="h55">€<span th:text="${cartItem.location.bookingPrice}"></span></h5>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-md-2">
                                         <h5 th:text="${cartItem.qty}" class="h51"></h5>
                                     </div>
                                 </div>
 
 
                                 <hr/>
-                                <h4 class="col-12 text-right"><strong class="h51">Order Total:
+                                <h4 class="col-md-12 text-right"><strong class="h51">Order Total:
                                     <!--                                                                   (<span th:text="${#Lists.size(cartItemList)}"> </span>-->
                                     <!--                                                            items):-->
                                 </strong>
